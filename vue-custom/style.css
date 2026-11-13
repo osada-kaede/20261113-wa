@@ -1,0 +1,195 @@
+/*-------------------------
+  基本設定
+-------------------------*/
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f4f5f7;
+  color: #252a34;
+}
+
+.shop-container {
+  width: min(1100px, 92%);
+  margin: 0 auto;
+  padding: 50px 0 80px;
+}
+
+/*-------------------------
+  ヘッダー
+-------------------------*/
+
+.shop-header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  margin-bottom: 35px;
+}
+
+.shop-label {
+  margin: 0 0 8px;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.shop-header h1 {
+  margin: 0;
+  font-size: 32px;
+}
+
+.shop-description {
+  color: #777;
+  font-size: 14px;
+}
+
+/*-------------------------
+  検索・絞り込み
+-------------------------*/
+
+.search-panel {
+  padding: 25px;
+  margin-bottom: 35px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 3px 15px #00000008;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 13px 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.filter-group {
+  display: flex;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.filter-group select {
+  flex: 1;
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #fff;
+  font-size: 14px;
+}
+
+.stock-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/*-------------------------
+  商品一覧
+-------------------------*/
+
+.result-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.result-header h2 {
+  margin: 0;
+  font-size: 17px;
+  letter-spacing: 1px;
+}
+
+.result-header p {
+  margin: 0;
+  color: #777;
+  font-size: 13px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.product-card {
+  overflow: hidden;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 3px 15px #00000008;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px #00000012;
+}
+
+.product-image {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: #e9edf2;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.category-label {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 5px 10px;
+  background: #fff;
+  border-radius: 4px;
+  font-size: 11px;
+}
+
+.product-info {
+  padding: 18px;
+}
+
+.product-info h3 {
+  margin: 0 0 12px;
+  font-size: 16px;
+}
+
+.product-price {
+  margin: 0 0 12px;
+  font-size: 19px;
+  font-weight: bold;
+}
+
+.stock-status {
+  margin: 0;
+  color: #16845b;
+  font-size: 12px;
+}
+
+.stock-status.out-of-stock {
+  color: #dc5555;
+}
+
+/*-------------------------
+  検索結果なし
+-------------------------*/
+
+.empty-message {
+  padding: 60px 20px;
+  background: #fff;
+  border-radius: 10px;
+  text-align: center;
+  color: #777;
+  font-size: 14px;
+}

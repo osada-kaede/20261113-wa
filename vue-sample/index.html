@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+  <div class="shop-container">
+    <header class="shop-header">
+      <div>
+        <p class="shop-label">ONLINE STORE</p>
+        <h1>商品一覧</h1>
+      </div>
+      <p class="shop-description">お気に入りの商品を見つけよう。</p>
+    </header>
+
+    <section class="search-panel">
+      <div class="search-box">
+        <!-- v-model：入力された検索キーワードをdataのkeywordに反映 -->
+        <input
+          type="text"
+          v-model="keyword"
+          placeholder="商品名を入力してください"
+        >
+      </div>
+
+      <div class="filter-group">
+        <!-- v-model：選択されたカテゴリーをdataのselectedCategoryに反映 -->
+        <select v-model="selectedCategory">
+          <option value="">すべてのカテゴリー</option>
+          <option value="パソコン">パソコン</option>
+          <option value="周辺機器">周辺機器</option>
+          <option value="アクセサリー">アクセサリー</option>
+        </select>
+
+        <!-- v-model：選択された並び替え条件をdataのsortTypeに反映 -->
+        <select v-model="sortType">
+          <option value="default">おすすめ順</option>
+          <option value="asc">価格が安い順</option>
+          <option value="desc">価格が高い順</option>
+        </select>
+      </div>
+
+      <!-- v-model：チェック状態をdataのstockOnlyに反映 -->
+      <label class="stock-filter">
+        <input type="checkbox" v-model="stockOnly">
+        在庫あり商品のみ表示
+      </label>
+    </section>
+
+    <section class="product-section">
+      <div class="result-header">
+        <h2>PRODUCTS</h2>
+
+        <!-- computed：displayProductsの件数を表示 -->
+        <p>{{ displayProducts.length }} 件の商品</p>
+      </div>
+
+      <!-- v-if：商品が1件以上ある場合に商品一覧を表示 -->
+      <div class="product-grid" v-if="displayProducts.length > 0">
+
+        <!-- v-for：displayProductsの各商品を繰り返し表示 -->
+        <!-- :key：各商品のidを識別用のキーとして設定 -->
+        <article
+          class="product-card"
+          v-for="product in displayProducts"
+          :key="product.id"
+        >
+          <div class="product-image">
+
+            <!-- :src：商品データのimageを画像のURLとして設定 -->
+            <!-- :alt：商品名を画像の代替テキストとして設定 -->
+            <img :src="product.image" :alt="product.name">
+
+            <span class="category-label">{{ product.category }}</span>
+          </div>
+
+          <div class="product-info">
+            <h3>{{ product.name }}</h3>
+
+            <!-- computedで加工した価格を表示 -->
+            <p class="product-price">{{ product.formattedPrice }}</p>
+
+            <!-- :class：在庫が0の場合にout-of-stockクラスを追加 -->
+            <p
+              class="stock-status"
+              :class="{ 'out-of-stock': product.stock === 0 }"
+            >
+              {{ product.stockLabel }}
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <!-- v-else：商品が1件もない場合にメッセージを表示 -->
+      <div class="empty-message" v-else>
+        <p>該当する商品が見つかりませんでした。</p>
+        <p>検索条件を変更してください。</p>
+      </div>
+    </section>
+  </div>
+</div>
+  
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
